@@ -31,6 +31,14 @@ public class QuestionDaoImpl extends BaseDaoImpl<Question> implements QuestionDa
 			question.setOptionG(rs.getString("optionG"));
 			question.setOptionH(rs.getString("optionH"));
 			question.setPoint(rs.getInt("point"));
+			question.setPointA(rs.getInt("pointA"));
+			question.setPointB(rs.getInt("pointB"));
+			question.setPointC(rs.getInt("pointC"));
+			question.setPointD(rs.getInt("pointD"));
+			question.setPointE(rs.getInt("pointE"));
+			question.setPointF(rs.getInt("pointF"));
+			question.setPointG(rs.getInt("pointG"));
+			question.setPointH(rs.getInt("pointH"));
 			question.setTitle(rs.getString("title"));
 			question.setImg(rs.getString("img"));
 			question.setType(QuestionType.valueOf(rs.getString("type")));

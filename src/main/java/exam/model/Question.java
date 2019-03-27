@@ -35,6 +35,14 @@ public class Question implements Serializable, JSONAble {
 	private String answerFacade;
 	private QuestionType type;
 	private int point;
+	private int pointA;
+	private int pointB;
+	private int pointC;
+	private int pointD;
+	private int pointE;
+	private int pointF;
+	private int pointG;
+	private int pointH;
 	private Teacher teacher;
 	
 	/**
@@ -52,7 +60,11 @@ public class Question implements Serializable, JSONAble {
 			.addElement("optionB", optionB).addElement("optionC", optionC).addElement("optionD", optionD)
 			.addElement("optionE", optionE).addElement("optionF", optionF).addElement("optionG", optionG)
 			.addElement("optionH", optionH)
-			.addElement("answer", answer).addElement("point", String.valueOf(point));
+			.addElement("answer", answer).addElement("point", String.valueOf(point))
+			.addElement("pointA", String.valueOf(pointA)).addElement("pointB", String.valueOf(pointB))
+			.addElement("pointC", String.valueOf(pointC)).addElement("pointD", String.valueOf(pointD))
+			.addElement("pointE", String.valueOf(pointE)).addElement("pointF", String.valueOf(pointF))
+			.addElement("pointG", String.valueOf(pointG)).addElement("pointH", String.valueOf(pointH));
 		return json;
 	}
 
@@ -75,6 +87,15 @@ public class Question implements Serializable, JSONAble {
 				", answerFacade='" + answerFacade + '\'' +
 				", type=" + type +
 				", point=" + point +
+				", pointA=" + pointA +
+				", pointB=" + pointB +
+				", pointC=" + pointC +
+				", pointD=" + pointD +
+				", pointE=" + pointE +
+				", pointF=" + pointF +
+				", pointG=" + pointG +
+				", pointH=" + pointH +
+				", teacher=" + teacher +
 				'}';
 	}
 
@@ -154,6 +175,70 @@ public class Question implements Serializable, JSONAble {
 
 	public void setOptionH(String optionH) {
 		this.optionH = optionH;
+	}
+
+	public int getPointA() {
+		return pointA;
+	}
+
+	public void setPointA(int pointA) {
+		this.pointA = pointA;
+	}
+
+	public int getPointB() {
+		return pointB;
+	}
+
+	public void setPointB(int pointB) {
+		this.pointB = pointB;
+	}
+
+	public int getPointC() {
+		return pointC;
+	}
+
+	public void setPointC(int pointC) {
+		this.pointC = pointC;
+	}
+
+	public int getPointD() {
+		return pointD;
+	}
+
+	public void setPointD(int pointD) {
+		this.pointD = pointD;
+	}
+
+	public int getPointE() {
+		return pointE;
+	}
+
+	public void setPointE(int pointE) {
+		this.pointE = pointE;
+	}
+
+	public int getPointF() {
+		return pointF;
+	}
+
+	public void setPointF(int pointF) {
+		this.pointF = pointF;
+	}
+
+	public int getPointG() {
+		return pointG;
+	}
+
+	public void setPointG(int pointG) {
+		this.pointG = pointG;
+	}
+
+	public int getPointH() {
+		return pointH;
+	}
+
+	public void setPointH(int pointH) {
+		this.pointH = pointH;
 	}
 
 	protected String generateFacade(String answer) {

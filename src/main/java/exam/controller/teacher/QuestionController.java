@@ -129,7 +129,10 @@ public class QuestionController {
 	@RequestMapping("/save")
 	@ResponseBody
 	public void save(Integer id, String title, String optionA, String optionB, String optionC, String optionD,
-			String answer, Integer point, String type, HttpServletRequest request, HttpServletResponse response) {
+					 String optionE, String optionF, String optionG, String optionH,
+			String answer, Integer point, Integer pointA, Integer pointB, Integer pointC, Integer pointD,
+					 Integer pointE,Integer pointF,Integer pointG,Integer pointH,
+					 String type, HttpServletRequest request, HttpServletResponse response) {
 		JSONObject json = new JSONObject();
 		if (!DataUtil.isValid(point) || !DataUtil.isValid(title, answer, type)
 				|| (QuestionType.valueOf(type) != QuestionType.JUDGE && !DataUtil.isValid(optionA, 
@@ -144,7 +147,19 @@ public class QuestionController {
 			question.setOptionB(optionB);
 			question.setOptionC(optionC);
 			question.setOptionD(optionD);
+			question.setOptionE(optionE);
+			question.setOptionF(optionF);
+			question.setOptionG(optionG);
+			question.setOptionH(optionH);
 			question.setPoint(point);
+			question.setPointA(pointA);
+			question.setPointB(pointB);
+			question.setPointC(pointC);
+			question.setPointD(pointD);
+			question.setPointE(pointE);
+			question.setPointF(pointF);
+			question.setPointG(pointG);
+			question.setPointH(pointH);
 			question.setTitle(title);
 			question.setTeacher((Teacher) request.getSession().getAttribute("teacher"));
 			questionService.saveOrUpdate(question);

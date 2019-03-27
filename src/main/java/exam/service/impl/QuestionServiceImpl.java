@@ -50,13 +50,21 @@ public class QuestionServiceImpl extends BaseServiceImpl<Question> implements Qu
 	public void saveOrUpdate(Question question) {
 		if (question.getId() > 0) {
 			String sql = "update question set title = ?, optionA = ?, optionB = ?, optionC = ?, optionD = ?" +
-					", answer = ?, point = ? where id = ?";
+					", optionE = ?, optionF = ?, optionG = ?, optionH = ?" +
+					", answer = ?, point = ?, pointA = ?, pointB = ?, pointC = ?, pointD = ?" +
+					", pointE = ?, pointF = ?, pointG = ?, pointH = ? where id = ?";
 			questionDao.executeSql(sql, new Object[] {question.getTitle(), question.getOptionA(), question.getOptionB(),
-					question.getOptionC(), question.getOptionD(), question.getAnswer(), question.getPoint(), question.getId()});
+					question.getOptionC(), question.getOptionD(), question.getOptionE(), question.getOptionF(),
+					question.getOptionG(), question.getOptionH(), question.getAnswer(), question.getPoint(),
+					question.getPointA(),question.getPointB(),question.getPointC(),question.getPointD(),
+					question.getPointE(),question.getPointF(),question.getPointG(),question.getPointH(),question.getId()});
 		} else {
-			String sql = "insert into question values(null, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into question values(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			questionDao.executeSql(sql, new Object[] {question.getTitle(), question.getOptionA(), question.getOptionB(),
-					question.getOptionC(), question.getOptionD(), question.getPoint(), question.getType().name(),
+					question.getOptionC(), question.getOptionD(), question.getOptionE(), question.getOptionF(),
+					question.getOptionG(), question.getOptionH(), question.getPoint(),
+					question.getPointA(),question.getPointB(),question.getPointC(),question.getPointD(),
+					question.getPointE(),question.getPointF(),question.getPointG(),question.getPointH(),question.getType().name(),
 					question.getAnswer(), question.getTeacher().getId()});
 		}
 	}

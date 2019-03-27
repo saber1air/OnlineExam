@@ -307,7 +307,7 @@ public abstract class DataUtil {
 
 	/**
 	 * 批卷
-	 * @param er 考生的答案
+	 * @param   //er 考生的答案
 	 * @param exam 所考的试卷，包含各个题目
 	 */
 	public static ExaminationResult markExam(ExaminationAnswer ea, Exam exam, String sid) {
@@ -319,7 +319,7 @@ public abstract class DataUtil {
 		//计算总分
 		int sum = 0;
 		Map<Integer, String> answers = ea.getAnswers();
-		sum += markHelper(exam.getSingleQuestions(), answers, er);
+		sum += markSingleHelper(exam.getSingleQuestions(), answers, er);
 		sum += markHelper(exam.getMultiQuestions(), answers, er);
 		sum += markHelper(exam.getJudgeQuestions(), answers, er);
 		er.setPoint(sum);
@@ -346,6 +346,53 @@ public abstract class DataUtil {
 			}
  			mq.setRight(q.getAnswer().equals(wa));
 			mq.setWrongAnswer(wa);
+		}
+		er.addMarkedQuestion(mq);
+		return point;
+	}
+
+	/**
+	 * 辅助批卷-批阅一道题
+	 * @return questions的总分数
+	 */
+	private static int markSingleHelper(List<Question> questions, Map<Integer, String> answers, ExaminationResult er) {
+		int point = 0;
+		MarkedQuestion mq = null;
+		int wa = -1;
+		for (Question q : questions) {
+			mq = new MarkedQuestion();
+			mq.setQuestionId(q.getId());
+			wa = Integer.parseInt(answers.get(q.getId()));
+			if(wa==0){
+				mq.setRight(true);
+				point += q.getPointA();
+			}else if(wa==1){
+				mq.setRight(true);
+				point += q.getPointB();
+			}else if(wa==2){
+				mq.setRight(true);
+				point += q.getPointC();
+			}else if(wa==3){
+				mq.setRight(true);
+				point += q.getPointD();
+			}else if(wa==4){
+				mq.setRight(true);
+				point += q.getPointE();
+			}else if(wa==5){
+				mq.setRight(true);
+				point += q.getPointF();
+			}else if(wa==6){
+				mq.setRight(true);
+				point += q.getPointG();
+			}else if(wa==7){
+				mq.setRight(true);
+				point += q.getPointH();
+			}else {
+				mq.setRight(false);
+			}
+
+			mq.setRight(wa!=-1);
+			mq.setWrongAnswer(String.valueOf(wa));
 		}
 		er.addMarkedQuestion(mq);
 		return point;
