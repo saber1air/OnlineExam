@@ -184,6 +184,40 @@ function setListeners() {
 	$("#add-single-btn").click(addSingleQuestion);
 	$("#add-multi-btn").click(addMultiQuestion);
 	$("#add-judge-btn").click(addJudgeQuestion);
+	//设置添加选项监听器
+    $("#add-single-option-btn").click(addSingleQuestionOption);
+    //设置题目上传图片监听器
+	$("input[name=uploadPic]").on('change', function (e) {
+        var uploadFile = new FormData();
+		var el  = $(this)[0].files[0];
+        uploadFile.append('file', el);
+        var fileSuffix = $(this)[0].files[0].name.split('.')[1];
+        if ('jpg' == fileSuffix || 'png' == fileSuffix || 'jpeg' == fileSuffix || 'gif' == fileSuffix || 'bmp' == fileSuffix) {
+        } else {
+            alert('仅支持上传图片格式的文件！');
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: "teacher/upload",
+            data: uploadFile,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                data = JSON.parse(data);
+                if (data.success) {
+                    filePath = data.message;
+                    el.next().val(filePath);
+                    Tips.showSuccess("上传成功！");
+                } else {
+                    Tips.showMessage(data.message);
+                }
+            },
+            error: function () {
+                Tips.showError('操作失败！');
+            }
+        });
+    });
 	//题库显示按钮
 	var $btn;
 	$("button[name=show-bank-btn]").click(function(event) {
@@ -503,6 +537,20 @@ function addSingleQuestion(handler) {
 	//重建事件监听
 	setValidators();
 }
+/**
+ * 新增或删除选项
+ * @param event
+ */
+function addSingleQuestionOption(event) {
+	if('none' ==$("div[name='extra_answers']").css('display')){
+        $("tr[name='extra_option']").css('display','');
+        $("div[name='extra_answers']").css('display','');
+	}else{
+        $("tr[name='extra_option']").css('display','none');
+        $("div[name='extra_answers']").css('display','none');
+	}
+}
+
 
 /**
  * [removeSingleQuestion 移除一道单选题]
