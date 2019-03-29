@@ -14,8 +14,8 @@
         http://www.springframework.org/schema/aop/spring-aop.xsd">
         
     <!-- 自动扫描所有包下面的@Component的bean，千万不能写./ -->
-    <context:component-scan base-package="exam.dao.impl,exam.service.impl"></context:component-scan>
-    
+    <context:component-scan base-package="exam.dao.impl,exam.service"></context:component-scan>
+
     <context:property-placeholder location="classpath:jdbc.properties"/>
     <!-- 加载属性配置文件 -->
     <bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">

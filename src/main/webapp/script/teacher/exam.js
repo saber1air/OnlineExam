@@ -189,8 +189,8 @@ function setListeners() {
     //设置题目上传图片监听器
 	$("input[name=uploadPic]").on('change', function (e) {
         var uploadFile = new FormData();
-		var el  = $(this)[0].files[0];
-        uploadFile.append('file', el);
+		//var el  = $(this)[0].files[0];
+        uploadFile.append('file', $(this)[0].files[0]);
         var fileSuffix = $(this)[0].files[0].name.split('.')[1];
         if ('jpg' == fileSuffix || 'png' == fileSuffix || 'jpeg' == fileSuffix || 'gif' == fileSuffix || 'bmp' == fileSuffix) {
         } else {
@@ -199,18 +199,18 @@ function setListeners() {
         }
         $.ajax({
             type: "post",
-            url: "teacher/upload",
+            url: "teacher/uploadImage",
             data: uploadFile,
             processData: false,
             contentType: false,
             success: function (data) {
-                data = JSON.parse(data);
-                if (data.success) {
-                    filePath = data.message;
+                //data = JSON.parse(data);
+                if (data.result === "1") {
+                    filePath = data.filePath;
                     el.next().val(filePath);
                     Tips.showSuccess("上传成功！");
                 } else {
-                    Tips.showMessage(data.message);
+                    Tips.showMessage("上传失败！");
                 }
             },
             error: function () {

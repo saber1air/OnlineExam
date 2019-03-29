@@ -99,10 +99,14 @@ public class ExamServiceImpl extends BaseServiceImpl<Exam> implements ExamServic
         //保存所有新插入的问题的id
         List<Integer> questionIds = new ArrayList<>();
         //保存题目，同时返回题目的id
-        String sql = "insert into question values(null,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into question values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         QuestionGenerateKeyCallback questionGenerateKeyCallback = new QuestionGenerateKeyCallback();
         for (final Question question : entity.getSingleQuestions()) {
-            questionIds.add(question.getId() > 0 ? question.getId() : examDao.getKeyHelper(sql, questionGenerateKeyCallback, question));
+            try {
+                questionIds.add(question.getId() > 0 ? question.getId() : examDao.getKeyHelper(sql, questionGenerateKeyCallback, question));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         for (final Question question : entity.getMultiQuestions()) {
         	questionIds.add(question.getId() > 0 ? question.getId() : examDao.getKeyHelper(sql, questionGenerateKeyCallback, question));
@@ -278,14 +282,27 @@ public class ExamServiceImpl extends BaseServiceImpl<Exam> implements ExamServic
         public void setParameters(PreparedStatement ps, Object param) throws SQLException {
             Question question = (Question) param;
             ps.setString(1, question.getTitle());
-            ps.setString(2, question.getOptionA());
-            ps.setString(3, question.getOptionB());
-            ps.setString(4, question.getOptionC());
-            ps.setString(5, question.getOptionD());
-            ps.setInt(6, question.getPoint());
-            ps.setString(7, question.getType().name());
-            ps.setString(8, question.getAnswer());
-            ps.setString(9, question.getTeacher().getId());
+            ps.setString(2, question.getImg());
+            ps.setString(3, question.getOptionA());
+            ps.setString(4, question.getOptionB());
+            ps.setString(5, question.getOptionC());
+            ps.setString(6, question.getOptionD());
+            ps.setString(7, question.getOptionE());
+            ps.setString(8, question.getOptionF());
+            ps.setString(9, question.getOptionG());
+            ps.setString(10, question.getOptionH());
+            ps.setInt(11, question.getPoint());
+            ps.setInt(12, question.getPointA());
+            ps.setInt(13, question.getPointB());
+            ps.setInt(14, question.getPointC());
+            ps.setInt(15, question.getPointD());
+            ps.setInt(16, question.getPointE());
+            ps.setInt(17, question.getPointF());
+            ps.setInt(18, question.getPointG());
+            ps.setInt(19, question.getPointH());
+            ps.setString(20, question.getType().name());
+            ps.setString(21, question.getAnswer());
+            ps.setString(22, question.getTeacher().getId());
         }
     }
     
