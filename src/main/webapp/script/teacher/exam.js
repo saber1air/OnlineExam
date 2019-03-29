@@ -187,37 +187,7 @@ function setListeners() {
 	//设置添加选项监听器
     $("#add-single-option-btn").click(addSingleQuestionOption);
     //设置题目上传图片监听器
-	$("input[name=uploadPic]").on('change', function (e) {
-        var uploadFile = new FormData();
-		var el  = $(this);
-        uploadFile.append('file', $(this)[0].files[0]);
-        var fileSuffix = $(this)[0].files[0].name.split('.')[1];
-        if ('jpg' == fileSuffix || 'png' == fileSuffix || 'jpeg' == fileSuffix || 'gif' == fileSuffix || 'bmp' == fileSuffix) {
-        } else {
-            alert('仅支持上传图片格式的文件！');
-            return;
-        }
-        $.ajax({
-            type: "post",
-            url: "teacher/uploadImage",
-            data: uploadFile,
-            processData: false,
-            contentType: false,
-            success: function (data) {
-                //data = JSON.parse(data);
-                if (data.result === "1") {
-                    // filePath = data.filePath;
-                    el.next().val(data.filePath);
-                    Tips.showSuccess("上传成功！");
-                } else {
-                    Tips.showMessage("上传失败！");
-                }
-            },
-            error: function () {
-                Tips.showError('操作失败！');
-            }
-        });
-    });
+	$("input[name=uploadPic]").on('change',upLoadPic);
 	//题库显示按钮
 	var $btn;
 	$("button[name=show-bank-btn]").click(function(event) {
@@ -542,6 +512,40 @@ function curTime() {
 	var day = date.getDate();
 	ele.innerHTML = year + "年" + month + "月" + day + "日";
 }
+/**
+ * 上传图片
+ */
+function upLoadPic() {
+    var uploadFile = new FormData();
+    var el  = $(this);
+    uploadFile.append('file', $(this)[0].files[0]);
+    var fileSuffix = $(this)[0].files[0].name.split('.')[1];
+    if ('jpg' == fileSuffix || 'png' == fileSuffix || 'jpeg' == fileSuffix || 'gif' == fileSuffix || 'bmp' == fileSuffix) {
+    } else {
+        alert('仅支持上传图片格式的文件！');
+        return;
+    }
+    $.ajax({
+        type: "post",
+        url: "teacher/uploadImage",
+        data: uploadFile,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            //data = JSON.parse(data);
+            if (data.result === "1") {
+                // filePath = data.filePath;
+                el.next().val(data.filePath);
+                Tips.showSuccess("上传成功！");
+            } else {
+                Tips.showMessage("上传失败！");
+            }
+        },
+        error: function () {
+            Tips.showError('操作失败！');
+        }
+    });
+}
 
 /**
  * [addSingleQuestion 添加一个单选题]
@@ -557,6 +561,7 @@ function addSingleQuestion(handler) {
 	if (handler && typeof handler === "function") {
 		handler.call(this, $cloned);
 	}
+	$cloned.find("input[name=uploadPic]").on('change',upLoadPic);
 	$("#single_questions").append($cloned);
 	ExamDesign.singleQuestionIndex ++;
 	//重建事件监听
