@@ -189,7 +189,7 @@ function setListeners() {
     //设置题目上传图片监听器
 	$("input[name=uploadPic]").on('change', function (e) {
         var uploadFile = new FormData();
-		//var el  = $(this)[0].files[0];
+		var el  = $(this);
         uploadFile.append('file', $(this)[0].files[0]);
         var fileSuffix = $(this)[0].files[0].name.split('.')[1];
         if ('jpg' == fileSuffix || 'png' == fileSuffix || 'jpeg' == fileSuffix || 'gif' == fileSuffix || 'bmp' == fileSuffix) {
@@ -206,8 +206,8 @@ function setListeners() {
             success: function (data) {
                 //data = JSON.parse(data);
                 if (data.result === "1") {
-                    filePath = data.filePath;
-                    el.next().val(filePath);
+                    // filePath = data.filePath;
+                    el.next().val(data.filePath);
                     Tips.showSuccess("上传成功！");
                 } else {
                     Tips.showMessage("上传失败！");
@@ -271,6 +271,7 @@ function checkAll() {
 		e, $this;
 	for (var i = 0, length = es.length;i < length;i ++) {
 		if (!cb.call(this, es[i])) {
+			alert("non-blank");
 			return;
 		}
 	}
@@ -279,6 +280,7 @@ function checkAll() {
 	es = ExamDesign.validators.numbers.elements;
 	for (i = 0, length = es.length;i < length;i ++) {
 		if (!cb.call(this, es[i])) {
+            alert("non-num");
 			return;
 		}
 	}
@@ -288,6 +290,7 @@ function checkAll() {
 	for (i = 0, length = es.length;i < length;i ++) {
 		e = es[i];
 		if (!cb.call(this, e.element, e.message)) {
+            alert("non-pull");
 			return;
 		}
 	}
@@ -297,6 +300,7 @@ function checkAll() {
     	$this = $(containers[i]);
     	if ($this.find("input:checked").length < 2) {
     		$this.next().find("span").html("请至少选择两个答案");
+            alert("non-multi");
 			return;
     	}
     }
@@ -369,20 +373,41 @@ function submit() {
 		var question = {}, typeStr = reflection[type];
 		question.id = $container.find("input[name=question-id]").val();
 		question.title = $container.find("input[name=" + typeStr + "_title]").val().replace(/"/g, "'");
-		question.point = $container.find("input[name=" + typeStr + "_point]").val().replace(/"/g, "'");
+		question.img = $container.find("input[name=" + typeStr + "_picPath]").val().replace(/"/g, "'");
+		// question.point = $container.find("input[name=" + typeStr + "_point]").val().replace(/"/g, "'");
 		//判断题不需要选项
 		if (type < 3) {
 			question.optionA = $container.find("input[name=" + typeStr + "_optionA]").val().replace(/"/g, "'");
+            question.pointA = $container.find("input[name=" + typeStr + "_optionA_points]").val().replace(/"/g, "'");
 			question.optionB = $container.find("input[name=" + typeStr + "_optionB]").val().replace(/"/g, "'");
-			question.optionC = $container.find("input[name=" + typeStr + "_optionC]").val().replace(/"/g, "'");
-			question.optionD = $container.find("input[name=" + typeStr + "_optionD]").val().replace(/"/g, "'");
+            question.pointB = $container.find("input[name=" + typeStr + "_optionB_points]").val().replace(/"/g, "'");
+            question.optionC = $container.find("input[name=" + typeStr + "_optionC]").val().replace(/"/g, "'");
+            question.pointC = $container.find("input[name=" + typeStr + "_optionC_points]").val().replace(/"/g, "'");
+            question.optionD = $container.find("input[name=" + typeStr + "_optionD]").val().replace(/"/g, "'");
+            question.pointD = $container.find("input[name=" + typeStr + "_optionD_points]").val().replace(/"/g, "'");
+            var questionE = $container.find("input[name=" + typeStr + "_optionE]");
+            question.optionE = questionE.val()?questionE.val().replace(/"/g, "'"):'';
+            var Epoint = $container.find("input[name=" + typeStr + "_optionE_points]");
+            question.pointE = Epoint.val()?Epoint.val().replace(/"/g, "'"):'0';
+            var questionF = $container.find("input[name=" + typeStr + "_optionF]");
+            question.optionF = questionF.val()?questionF.val().replace(/"/g, "'"):'';
+            var Fpoint = $container.find("input[name=" + typeStr + "_optionF_points]");
+            question.pointF = Fpoint.val()?Fpoint.val().replace(/"/g, "'"):'0';
+            var questionG = $container.find("input[name=" + typeStr + "_optionG]");
+            question.optionG = questionG.val()?questionG.val().replace(/"/g, "'"):'';
+            var Gpoint = $container.find("input[name=" + typeStr + "_optionG_points]");
+            question.pointG = Gpoint.val()?Gpoint.val().replace(/"/g, "'"):'0';
+            var questionH = $container.find("input[name=" + typeStr + "_optionH]");
+            question.optionH = questionH.val()?questionH.val().replace(/"/g, "'"):'';
+            var Hpoint = $container.find("input[name=" + typeStr + "_optionH_points]");
+            question.pointH = Hpoint.val()?Hpoint.val().replace(/"/g, "'"):'0';
 		}
 		//默认当作单选题
-		if (fn == null) {
-			question.answer = $container.find("td[name=" + typeStr + "-options-container] input:checked").val();
-		} else {
-			question.answer = fn.call($container);
-		}
+		// if (fn == null) {
+		// 	question.answer = $container.find("td[name=" + typeStr + "-options-container] input:checked").val();
+		// } else {
+		// 	question.answer = fn.call($container);
+		// }
 		return question;
 	}
 
@@ -544,10 +569,10 @@ function addSingleQuestion(handler) {
 function addSingleQuestionOption(event) {
 	if('none' ==$("div[name='extra_answers']").css('display')){
         $("tr[name='extra_option']").css('display','');
-        $("div[name='extra_answers']").css('display','');
+        // $("div[name='extra_answers']").css('display','');
 	}else{
         $("tr[name='extra_option']").css('display','none');
-        $("div[name='extra_answers']").css('display','none');
+        // $("div[name='extra_answers']").css('display','none');
 	}
 }
 

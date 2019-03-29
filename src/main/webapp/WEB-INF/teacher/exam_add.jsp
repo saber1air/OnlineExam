@@ -49,14 +49,15 @@
                     <tr>
                         <td name="single_index" width="5%">1</td>
                         <td width="5%">、</td>
-                        <td width="20%">题目:</td>
-                        <td width="50%"><input type="text" name="single_title" class="required">
-                            <input type="file" name="uploadPic">
-                            <input type="hidden" name='picPath'>
+                        <td width="15%">题目:</td>
+                        <td width="20%"><input type="text" name="single_title" class="required">
                         </td>
                         <td width="20%">
                             <span class="error"></span>
                         </td>
+                        <td width="15%">&nbsp;上传图片：&nbsp;</td>
+                        <td width="20%"><input type="file" name="uploadPic">
+                            <input type="hidden" name='single_picPath'></td>
                     </tr>
                     <tr>
                         <td colspan="2"></td>
@@ -65,6 +66,8 @@
                         <td>
                             <span class="error"></span>
                         </td>
+                        <td>&nbsp; &nbsp;分值： &nbsp;</td>
+                        <td><input type="text" name="single_optionA_points" class=""></td>
                     </tr>
                     <tr>
                         <td colspan="2"></td>
@@ -73,6 +76,8 @@
                         <td>
                             <span class="error"></span>
                         </td>
+                        <td>&nbsp; &nbsp;分值： &nbsp;</td>
+                        <td><input type="text" name="single_optionB_points" class=""></td>
                     </tr>
                     <tr>
                         <td colspan="2"></td>
@@ -81,6 +86,8 @@
                         <td>
                             <span class="error"></span>
                         </td>
+                        <td>&nbsp; &nbsp;分值： &nbsp;</td>
+                        <td><input type="text" name="single_optionC_points" class=""></td>
                     </tr>
                     <tr>
                         <td colspan="2"></td>
@@ -89,44 +96,54 @@
                         <td>
                             <span class="error"></span>
                         </td>
+                        <td>&nbsp; &nbsp;分值： &nbsp;</td>
+                        <td><input type="text" name="single_optionD_points" class=""></td>
                     </tr>
                     <tr name="extra_option" style="display:none;">
                         <td colspan="2"></td>
                         <td>选项E:</td>
-                        <td><input type="text" name="single_optionE" class="required"></td>
+                        <td><input type="text" name="single_optionE" class=""></td>
                         <td>
                             <span class="error"></span>
                         </td>
+                        <td>&nbsp; &nbsp;分值： &nbsp;</td>
+                        <td><input type="text" name="single_optionE_points" class=""></td>
                     </tr>
                     <tr name="extra_option" style="display:none;">
                         <td colspan="2"></td>
                         <td>选项F:</td>
-                        <td><input type="text" name="single_optionF" class="required"></td>
+                        <td><input type="text" name="single_optionF" class=""></td>
                         <td>
                             <span class="error"></span>
                         </td>
+                        <td>&nbsp; &nbsp;分值： &nbsp;</td>
+                        <td><input type="text" name="single_optionF_points" class=""></td>
                     </tr>
                     <tr name="extra_option" style="display:none;">
                         <td colspan="2"></td>
                         <td>选项G:</td>
-                        <td><input type="text" name="single_optionG" class="required"></td>
+                        <td><input type="text" name="single_optionG" class=""></td>
                         <td>
                             <span class="error"></span>
                         </td>
+                        <td>&nbsp; &nbsp;分值： &nbsp;</td>
+                        <td><input type="text" name="single_optionG_points" class=""></td>
                     </tr>
                     <tr name="extra_option" style="display:none;">
                         <td colspan="2"></td>
                         <td>选项H:</td>
-                        <td><input type="text" name="single_optionH" class="required"></td>
+                        <td><input type="text" name="single_optionH" class=""></td>
                         <td>
                             <span class="error"></span>
                         </td>
+                        <td>&nbsp; &nbsp;分值： &nbsp;</td>
+                        <td><input type="text" name="single_optionH_points" class=""></td>
                     </tr>
 
-                    <tr>
+                    <tr style="display: none">
                         <td colspan="2"></td>
                         <td>答案:</td>
-                        <td name="single-options-container">
+                        <td  colspan="2" name="single-options-container">
                             <input type="radio" value="0" name="single-answer-1" checked="checked">A&nbsp;&nbsp;
                             <input type="radio" value="1" name="single-answer-1">B&nbsp;&nbsp;
                             <input type="radio" value="2" name="single-answer-1">C&nbsp;&nbsp;
@@ -140,11 +157,11 @@
 
                         </td>
                     </tr>
-                    <tr>
+                    <tr style="display: none">
                         <td colspan="2"></td>
                         <td>分值:</td>
                         <td>
-                            <input type="text" style="width:100px;" name="single_point" class="number">
+                            <%--<input type="text" style="width:100px;" name="single_point" class="number">--%>
                         <td>
                             <span class="error"></span>
                         </td>
@@ -168,141 +185,143 @@
         </div>
     </div>
     <!--多选题-->
-    <div>
-        <div class="title">
-            二、多选题:
-        </div>
-        <div id="multi_questions">
-            <div class="multi_question">
-                <!-- 记录此题的id -->
-                <input type="hidden" name="question-id"/>
-                <table class="question_table">
-                    <tr>
-                        <td name="multi_index" width="5%">1</td>
-                        <td width="5%">、</td>
-                        <td width="20%">题目:</td>
-                        <td width="40%"><input type="text" name="multi_title" class="required"></td>
-                        <td width="30%">
-                            <span class="error"></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>选项A:</td>
-                        <td><input type="text" name="multi_optionA" class="required"></td>
-                        <td>
-                            <span class="error"></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>选项B:</td>
-                        <td><input type="text" name="multi_optionB" class="required"></td>
-                        <td>
-                            <span class="error"></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>选项C:</td>
-                        <td><input type="text" name="multi_optionC" class="required"></td>
-                        <td>
-                            <span class="error"></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>选项D:</td>
-                        <td><input type="text" name="multi_optionD" class="required"></td>
-                        <td>
-                            <span class="error"></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>答案:</td>
-                        <td name="multi-options-container">
-                            <input type="checkbox" value="0">A&nbsp;&nbsp;
-                            <input type="checkbox" value="1">B&nbsp;&nbsp;
-                            <input type="checkbox" value="2">C&nbsp;&nbsp;
-                            <input type="checkbox" value="3">D
-                        </td>
-                        <td><span class="error"></span></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>分值:</td>
-                        <td>
-                            <input type="text" style="width:100px;" name="multi_point" class="number">
-                        </td>
-                        <td><span class="error"></span></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td colspan="2">
-                            <button name="remove-multi-btn">&nbsp;移除此题</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <hr>
-        <!--操作按钮-->
-        <div class="btns">
-            <button id="add-multi-btn">添加问题</button>
-            <button name="show-bank-btn" questionType="2">题库...</button>
-        </div>
-    </div>
+    <%--<div style="display: none">--%>
+        <%--<div class="title">--%>
+            <%--二、多选题:--%>
+        <%--</div>--%>
+        <%--<div id="multi_questions">--%>
+            <%--<div class="multi_question">--%>
+                <%--<!-- 记录此题的id -->--%>
+                <%--<input type="hidden" name="question-id"/>--%>
+                <%--<table class="question_table">--%>
+                    <%--<tr>--%>
+                        <%--<td name="multi_index" width="5%">1</td>--%>
+                        <%--<td width="5%">、</td>--%>
+                        <%--<td width="20%">题目:</td>--%>
+                        <%--<td width="40%"><input type="text" name="multi_title" class="required"></td>--%>
+                        <%--<td width="30%">--%>
+                            <%--<span class="error"></span>--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td colspan="2"></td>--%>
+                        <%--<td>选项A:</td>--%>
+                        <%--<td><input type="text" name="multi_optionA" class="required"></td>--%>
+                        <%--<td>--%>
+                            <%--<span class="error"></span>--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td colspan="2"></td>--%>
+                        <%--<td>选项B:</td>--%>
+                        <%--<td><input type="text" name="multi_optionB" class="required"></td>--%>
+                        <%--<td>--%>
+                            <%--<span class="error"></span>--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td colspan="2"></td>--%>
+                        <%--<td>选项C:</td>--%>
+                        <%--<td><input type="text" name="multi_optionC" class="required"></td>--%>
+                        <%--<td>--%>
+                            <%--<span class="error"></span>--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td colspan="2"></td>--%>
+                        <%--<td>选项D:</td>--%>
+                        <%--<td><input type="text" name="multi_optionD" class="required"></td>--%>
+                        <%--<td>--%>
+                            <%--<span class="error"></span>--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td colspan="2"></td>--%>
+                        <%--<td>答案:</td>--%>
+                        <%--<td name="multi-options-container">--%>
+                            <%--<input type="checkbox" value="0">A&nbsp;&nbsp;--%>
+                            <%--<input type="checkbox" value="1">B&nbsp;&nbsp;--%>
+                            <%--<input type="checkbox" value="2">C&nbsp;&nbsp;--%>
+                            <%--<input type="checkbox" value="3">D--%>
+                        <%--</td>--%>
+                        <%--<td><span class="error"></span></td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td colspan="2"></td>--%>
+                        <%--<td>分值:</td>--%>
+                        <%--<td>--%>
+                            <%--<input type="text" style="width:100px;" name="multi_point" class="number">--%>
+                        <%--</td>--%>
+                        <%--<td><span class="error"></span></td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td colspan="2"></td>--%>
+                        <%--<td colspan="2">--%>
+                            <%--<button name="remove-multi-btn">&nbsp;移除此题</button>--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
+                <%--</table>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+        <%--<hr>--%>
+        <%--<!--操作按钮-->--%>
+        <%--<div class="btns">--%>
+            <%--<button id="add-multi-btn">添加问题</button>--%>
+            <%--<button name="show-bank-btn" questionType="2">题库...</button>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+    <%----%>
     <!--判断题-->
-    <div>
-        <div class="title">
-            三、判断题
-        </div>
-        <div id="judge_questions">
-            <div class="judge_question">
-                <!-- 记录此题的id -->
-                <input type="hidden" name="question-id"/>
-                <table class="judge_question_table">
-                    <tr>
-                        <td name="multi_index" width="5%">1</td>
-                        <td width="5%">、</td>
-                        <td width="20%">题目:</td>
-                        <td width="40%"><input type="text" name="judge_title" class="required"></td>
-                        <td width="30%">
-                            <span class="error"></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>答案:</td>
-                        <td>
-                            <input type="radio" value="0" name="judge-answer-1" checked="checked">对&nbsp;&nbsp;
-                            <input type="radio" value="1" name="judge-answer-1">错
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>分值:</td>
-                        <td>
-                            <input type="text" style="width:100px;" name="judge_point" class="number">
-                        </td>
-                        <td><span class="error"></span></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td colspan="2">
-                            <button name="remove-judge-btn">&nbsp;移除此题</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <!--操作按钮-->
-        <div class="btns">
-            <button id="add-judge-btn">添加问题</button>
-            <button name="show-bank-btn" questionType="3">题库...</button>
-        </div>
-    </div>
+    <%--<div style="display: none">--%>
+        <%--<div class="title">--%>
+            <%--三、判断题--%>
+        <%--</div>--%>
+        <%--<div id="judge_questions">--%>
+            <%--<div class="judge_question">--%>
+                <%--<!-- 记录此题的id -->--%>
+                <%--<input type="hidden" name="question-id"/>--%>
+                <%--<table class="judge_question_table">--%>
+                    <%--<tr>--%>
+                        <%--<td name="multi_index" width="5%">1</td>--%>
+                        <%--<td width="5%">、</td>--%>
+                        <%--<td width="20%">题目:</td>--%>
+                        <%--<td width="40%"><input type="text" name="judge_title" class="required"></td>--%>
+                        <%--<td width="30%">--%>
+                            <%--<span class="error"></span>--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td colspan="2"></td>--%>
+                        <%--<td>答案:</td>--%>
+                        <%--<td>--%>
+                            <%--<input type="radio" value="0" name="judge-answer-1" checked="checked">对&nbsp;&nbsp;--%>
+                            <%--<input type="radio" value="1" name="judge-answer-1">错--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td colspan="2"></td>--%>
+                        <%--<td>分值:</td>--%>
+                        <%--<td>--%>
+                            <%--<input type="text" style="width:100px;" name="judge_point" class="number">--%>
+                        <%--</td>--%>
+                        <%--<td><span class="error"></span></td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td colspan="2"></td>--%>
+                        <%--<td colspan="2">--%>
+                            <%--<button name="remove-judge-btn">&nbsp;移除此题</button>--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
+                <%--</table>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+        <%--<!--操作按钮-->--%>
+        <%--<div class="btns">--%>
+            <%--<button id="add-judge-btn">添加问题</button>--%>
+            <%--<button name="show-bank-btn" questionType="3">题库...</button>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+
 </div>
 
 <!--底部-->
@@ -379,51 +398,123 @@
                 <tr>
                     <td name="single_index" width="5%">1</td>
                     <td width="5%">、</td>
-                    <td width="20%">题目:</td>
-                    <td width="40%"><input type="text" name="single_title" class="required"></td>
-                    <td width="30%"><span class="error"></span></td>
+                    <td width="15%">题目:</td>
+                    <td width="20%"><input type="text" name="single_title" class="required">
+                    </td>
+                    <td width="20%">
+                        <span class="error"></span>
+                    </td>
+                    <td width="15%">&nbsp;上传图片：&nbsp;</td>
+                    <td width="20%"><input type="file" name="uploadPic">
+                        <input type="hidden" name='picPath'></td>
                 </tr>
                 <tr>
                     <td colspan="2"></td>
                     <td>选项A:</td>
                     <td><input type="text" name="single_optionA" class="required"></td>
-                    <td><span class="error"></span></td>
+                    <td>
+                        <span class="error"></span>
+                    </td>
+                    <td>&nbsp; &nbsp;分值： &nbsp;</td>
+                    <td><input type="text" name="single_optionA_points" class=""></td>
                 </tr>
                 <tr>
                     <td colspan="2"></td>
                     <td>选项B:</td>
                     <td><input type="text" name="single_optionB" class="required"></td>
-                    <td><span class="error"></span></td>
+                    <td>
+                        <span class="error"></span>
+                    </td>
+                    <td>&nbsp; &nbsp;分值： &nbsp;</td>
+                    <td><input type="text" name="single_optionB_points" class=""></td>
                 </tr>
                 <tr>
                     <td colspan="2"></td>
                     <td>选项C:</td>
                     <td><input type="text" name="single_optionC" class="required"></td>
-                    <td><span class="error"></span></td>
+                    <td>
+                        <span class="error"></span>
+                    </td>
+                    <td>&nbsp; &nbsp;分值： &nbsp;</td>
+                    <td><input type="text" name="single_optionC_points" class=""></td>
                 </tr>
                 <tr>
                     <td colspan="2"></td>
                     <td>选项D:</td>
                     <td><input type="text" name="single_optionD" class="required"></td>
-                    <td><span class="error"></span></td>
+                    <td>
+                        <span class="error"></span>
+                    </td>
+                    <td>&nbsp; &nbsp;分值： &nbsp;</td>
+                    <td><input type="text" name="single_optionD_points" class=""></td>
                 </tr>
-                <tr>
+                <tr name="extra_option" style="display:none;">
+                    <td colspan="2"></td>
+                    <td>选项E:</td>
+                    <td><input type="text" name="single_optionE" class="required"></td>
+                    <td>
+                        <span class="error"></span>
+                    </td>
+                    <td>&nbsp; &nbsp;分值： &nbsp;</td>
+                    <td><input type="text" name="single_optionE_points" class=""></td>
+                </tr>
+                <tr name="extra_option" style="display:none;">
+                    <td colspan="2"></td>
+                    <td>选项F:</td>
+                    <td><input type="text" name="single_optionF" class="required"></td>
+                    <td>
+                        <span class="error"></span>
+                    </td>
+                    <td>&nbsp; &nbsp;分值： &nbsp;</td>
+                    <td><input type="text" name="single_optionF_points" class=""></td>
+                </tr>
+                <tr name="extra_option" style="display:none;">
+                    <td colspan="2"></td>
+                    <td>选项G:</td>
+                    <td><input type="text" name="single_optionG" class="required"></td>
+                    <td>
+                        <span class="error"></span>
+                    </td>
+                    <td>&nbsp; &nbsp;分值： &nbsp;</td>
+                    <td><input type="text" name="single_optionG_points" class=""></td>
+                </tr>
+                <tr name="extra_option" style="display:none;">
+                    <td colspan="2"></td>
+                    <td>选项H:</td>
+                    <td><input type="text" name="single_optionH" class="required"></td>
+                    <td>
+                        <span class="error"></span>
+                    </td>
+                    <td>&nbsp; &nbsp;分值： &nbsp;</td>
+                    <td><input type="text" name="single_optionH_points" class=""></td>
+                </tr>
+
+                <tr style="display: none">
                     <td colspan="2"></td>
                     <td>答案:</td>
                     <td name="single-options-container">
-                        <input type="radio" value="0" checked="checked">A&nbsp;&nbsp;
-                        <input type="radio" value="1">B&nbsp;&nbsp;
-                        <input type="radio" value="2">C&nbsp;&nbsp;
-                        <input type="radio" value="3">D
+                        <input type="radio" value="0" name="single-answer-1" checked="checked">A&nbsp;&nbsp;
+                        <input type="radio" value="1" name="single-answer-1">B&nbsp;&nbsp;
+                        <input type="radio" value="2" name="single-answer-1">C&nbsp;&nbsp;
+                        <input type="radio" value="3" name="single-answer-1">D&nbsp;&nbsp;
+                        <div name="extra_answers" style="display: none">
+                            <input type="radio" value="0" name="single-answer-1">E&nbsp;&nbsp;
+                            <input type="radio" value="1" name="single-answer-1">F&nbsp;&nbsp;
+                            <input type="radio" value="2" name="single-answer-1">G&nbsp;&nbsp;
+                            <input type="radio" value="3" name="single-answer-1">H
+                        </div>
+
                     </td>
                 </tr>
-                <tr>
+                <tr style="display: none">
                     <td colspan="2"></td>
                     <td>分值:</td>
                     <td>
                         <input type="text" style="width:100px;" name="single_point" class="number">
+                    <td>
+                        <span class="error"></span>
                     </td>
-                    <td><span class="error"></span></td>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2"></td>
