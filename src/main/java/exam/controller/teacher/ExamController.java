@@ -82,7 +82,12 @@ public class ExamController {
 	public void add(String exam, HttpServletRequest request, HttpServletResponse response) {
 		Teacher teacher = (Teacher) request.getSession().getAttribute("teacher");
 		JSON json = new JSONObject();
-		Exam result = DataUtil.parseExam(exam, teacher);
+		Exam result = new Exam();
+		try {
+			result = DataUtil.parseExam(exam, teacher);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		//总分为零，说明试卷为空，不允许
 		if (result.getPoints() == 0) {
 			json.addElement("result", "0").addElement("message", "请不要提交空试卷!");
@@ -227,7 +232,7 @@ public class ExamController {
      * @param eid 试卷id
      * @param title 标题
      * @param limit 时间限制
-     * @param request
+     * @param //request
      */
     @RequestMapping("/update/{eid}")
     @ResponseBody

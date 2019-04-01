@@ -55,16 +55,16 @@
 						<li>B.&nbsp;&nbsp;${question.optionB}</li>
 						<li>C.&nbsp;&nbsp;${question.optionC}</li>
 						<li>D.&nbsp;&nbsp;${question.optionD}</li>
-						<c:if test="${question.optionE != null}">
+						<c:if test="${question.optionE != null && question.optionE.length()>0}">
 							<li>E.&nbsp;&nbsp;${question.optionE}</li>
 						</c:if>
-						<c:if test="${question.optionE != null}">
+						<c:if test="${question.optionF != null  && question.optionF.length()>0}">
 							<li>F.&nbsp;&nbsp;${question.optionF}</li>
 						</c:if>
-						<c:if test="${question.optionE != null}">
+						<c:if test="${question.optionG != null && question.optionG.length()>0}">
 							<li>G.&nbsp;&nbsp;${question.optionG}</li>
 						</c:if>
-						<c:if test="${question.optionE != null}">
+						<c:if test="${question.optionH != null && question.optionH.length()>0}">
 							<li>H.&nbsp;&nbsp;${question.optionH}</li>
 						</c:if>
 					</ul>
@@ -74,17 +74,17 @@
 						<input type="radio" name="single-${status.index}" value="1" />B
 						<input type="radio" name="single-${status.index}" value="2" />C
 						<input type="radio" name="single-${status.index}" value="3" />D
-						<c:if test="${question.optionE != null}">
+						<c:if test="${question.optionE != null && question.optionE.length()>0}">
 							<input type="radio" name="single-${status.index}" value="4" />E
 						</c:if>
-						<c:if test="${question.optionE != null}">
+						<c:if test="${question.optionF != null && question.optionF.length()>0}">
 							<input type="radio" name="single-${status.index}" value="5" />F
 						</c:if>
-						<c:if test="${question.optionE != null}">
+						<c:if test="${question.optionG != null && question.optionG.length()>0}">
 							<input type="radio" name="single-${status.index}" value="6" />G
 						</c:if>
-						<c:if test="${question.optionE != null}">
-							<input type="radio" name="single-${status.index}" value="7" />F
+						<c:if test="${question.optionH != null && question.optionH.length()>0}">
+							<input type="radio" name="single-${status.index}" value="7" />H
 						</c:if>
 					</div>
 				</div>

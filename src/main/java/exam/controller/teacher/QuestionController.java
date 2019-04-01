@@ -227,7 +227,7 @@ public class QuestionController {
 		if (DataUtil.isValid(search)) {
 			where += " and title like '%" + search + "%'"; 
 		}
-		if (!eid.equals("0") && eid != "0" && DataUtil.isValid(eid)) {
+		if (eid !=null && !eid.equals("0") && eid != "0" && DataUtil.isValid(eid)) {
 			where += " and id in (select qid from exam_question where eid = " + eid + ")";
 		}
 		PageBean<Question> pageBean = questionService.pageSearch(pageCode, pageSize, pageNumber, where, null, null);

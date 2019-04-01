@@ -208,7 +208,7 @@ public abstract class DataUtil {
 			multiPoints = 0,
 			judgePoints = 0,
 			sumPoints = 0;
-		sumPoints += (singlePoints = parseQuestion(exam, JSONArray.fromObject(node.get("singles")), QuestionType.SINGLE, teacher));
+		sumPoints += (singlePoints = parseSingleQuestion(exam, JSONArray.fromObject(node.get("singles")), QuestionType.SINGLE, teacher));
 		sumPoints += (multiPoints = parseQuestion(exam, JSONArray.fromObject(node.get("multis")), QuestionType.MULTI, teacher));
 		sumPoints += (judgePoints = parseQuestion(exam, JSONArray.fromObject(node.get("judges")), QuestionType.JUDGE, teacher));
 		exam.setSinglePoints(singlePoints);
@@ -287,6 +287,83 @@ public abstract class DataUtil {
 	}
 
 	/**
+	 * 解析出一道题目
+	 * @param exam 试卷对象，解析完成后直接加入试卷
+	 * @param nodes 题目节点
+	 * @param type 题目类型
+	 * @return 返回此组单选题目的总分值
+	 */
+	private static int parseSingleQuestion(Exam exam, JSONArray nodes, QuestionType type, Teacher teacher) {
+		Question question = new Question();
+		JSONObject jsonQuestion = null;
+		//计算此组题目的分值
+		int points = 0, point = 0;
+		String idStr = null;
+		for (Object o : nodes) {
+			question = new Question();
+			jsonQuestion = JSONObject.fromObject(o);
+			question.setTitle(jsonQuestion.getString("title"));
+			if (isValid((idStr = jsonQuestion.getString("id")))) {
+				question.setId(Integer.parseInt(idStr));
+			}
+			question.setImg(jsonQuestion.getString("img"));
+			if (type != QuestionType.JUDGE) {
+				question.setOptionA(jsonQuestion.getString("optionA"));
+				question.setOptionB(jsonQuestion.getString("optionB"));
+				question.setOptionC(jsonQuestion.getString("optionC"));
+				question.setOptionD(jsonQuestion.getString("optionD"));
+				question.setOptionE(jsonQuestion.getString("optionE"));
+				question.setOptionF(jsonQuestion.getString("optionF"));
+				question.setOptionG(jsonQuestion.getString("optionG"));
+				question.setOptionH(jsonQuestion.getString("optionH"));
+
+				question.setPointA(jsonQuestion.getInt("pointA"));
+				question.setPointB(jsonQuestion.getInt("pointB"));
+				question.setPointC(jsonQuestion.getInt("pointC"));
+				question.setPointD(jsonQuestion.getInt("pointD"));
+				question.setPointE(jsonQuestion.getInt("pointE"));
+				question.setPointF(jsonQuestion.getInt("pointF"));
+				question.setPointG(jsonQuestion.getInt("pointG"));
+				question.setPointH(jsonQuestion.getInt("pointH"));
+			}
+			if(jsonQuestion.getInt("pointA")>point){
+				point = jsonQuestion.getInt("pointA");
+			}
+			if(jsonQuestion.getInt("pointB")>point){
+				point = jsonQuestion.getInt("pointB");
+			}
+			if(jsonQuestion.getInt("pointC")>point){
+				point = jsonQuestion.getInt("pointC");
+			}
+			if(jsonQuestion.getInt("pointD")>point){
+				point = jsonQuestion.getInt("pointD");
+			}
+			if(jsonQuestion.getInt("pointE")>point){
+				point = jsonQuestion.getInt("pointE");
+			}
+			if(jsonQuestion.getInt("pointF")>point){
+				point = jsonQuestion.getInt("pointF");
+			}
+			if(jsonQuestion.getInt("pointG")>point){
+				point = jsonQuestion.getInt("pointG");
+			}
+			if(jsonQuestion.getInt("pointH")>point){
+				point = jsonQuestion.getInt("pointH");
+			}
+
+			question.setPoint(point);
+			points += point;
+			question.setType(type);
+			question.setAnswer("0");
+			question.setTeacher(teacher);
+			if (type == QuestionType.SINGLE) {
+				exam.addSingleQuestion(question);
+			}
+		}
+		return points;
+	}
+
+	/**
 	 * 把从客户端传来的json格式的考试结果封装为ExaminationResult对象
 	 * 格式示例:{eid:1,questions:[{id:1,answer:2,3}]}
 	 * @param result
@@ -319,9 +396,15 @@ public abstract class DataUtil {
 		//计算总分
 		int sum = 0;
 		Map<Integer, String> answers = ea.getAnswers();
-		sum += markSingleHelper(exam.getSingleQuestions(), answers, er);
-		sum += markHelper(exam.getMultiQuestions(), answers, er);
-		sum += markHelper(exam.getJudgeQuestions(), answers, er);
+		if(exam.getSingleQuestions()!=null && exam.getSingleQuestions().size()>0){
+			sum += markSingleHelper(exam.getSingleQuestions(), answers, er);
+		}
+		if(exam.getMultiQuestions()!=null && exam.getMultiQuestions().size()>0){
+			sum += markHelper(exam.getMultiQuestions(), answers, er);
+		}
+		if(exam.getJudgeQuestions()!=null && exam.getJudgeQuestions().size()>0){
+			sum += markHelper(exam.getJudgeQuestions(), answers, er);
+		}
 		er.setPoint(sum);
 		return er;
 	}

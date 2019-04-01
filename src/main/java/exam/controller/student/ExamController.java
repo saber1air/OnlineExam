@@ -115,7 +115,11 @@ public class ExamController {
 				Exam exam = (Exam) session.getAttribute("exam");
 				String studentId = ((Student) session.getAttribute("student")).getId();
 				ExaminationResult er = DataUtil.markExam(ea, exam, studentId);
-				examinationResultService.saveOrUpdate(er);
+				try {
+					examinationResultService.saveOrUpdate(er);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				session.removeAttribute("exam");
 				json.addElement("result", "1").addElement("point", String.valueOf(er.getPoint()));
 			}

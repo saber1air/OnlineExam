@@ -406,7 +406,7 @@
                     </td>
                     <td width="15%">&nbsp;上传图片：&nbsp;</td>
                     <td width="20%"><input type="file" name="uploadPic">
-                        <input type="hidden" name='picPath'></td>
+                        <input type="hidden" name='single_picPath'></td>
                 </tr>
                 <tr>
                     <td colspan="2"></td>
