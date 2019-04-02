@@ -128,7 +128,7 @@ public class QuestionController {
 	 */
 	@RequestMapping("/save")
 	@ResponseBody
-	public void save(Integer id, String title, String optionA, String optionB, String optionC, String optionD,
+	public void save(Integer id, String title,String img, String optionA, String optionB, String optionC, String optionD,
 					 String optionE, String optionF, String optionG, String optionH,
 			String answer, Integer point, Integer pointA, Integer pointB, Integer pointC, Integer pointD,
 					 Integer pointE,Integer pointF,Integer pointG,Integer pointH,
@@ -161,6 +161,7 @@ public class QuestionController {
 			question.setPointG(pointG);
 			question.setPointH(pointH);
 			question.setTitle(title);
+			question.setImg(img);
 			question.setTeacher((Teacher) request.getSession().getAttribute("teacher"));
 			questionService.saveOrUpdate(question);
 			json.addElement("result", "1");
