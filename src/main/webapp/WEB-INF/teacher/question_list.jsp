@@ -92,26 +92,36 @@
 						<thead>
 							<tr>
 								<th width="5%">id</th>
-								<th width="25%">标题</th>
-								<th width="10%">选项A</th>
-								<th width="10%">选项B</th>
-								<th width="10%">选项C</th>
-								<th width="10%">选项D</th>
-								<th width="20%">操作</th>
+                                <th width="10%">标题</th>
+								<th width="15%"></th>
+								<th width="7%">选项A</th>
+								<th width="7%">选项B</th>
+								<th width="7%">选项C</th>
+								<th width="7%">选项D</th>
+								<th width="7%">选项E</th>
+								<th width="7%">选项F</th>
+								<th width="7%">选项G</th>
+								<th width="7%">选项H</th>
+								<th width="14%">操作</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach items="${pageBean.records}" var="question">
 								<tr>
-									<td>${question.id}</td>
-									<td>${question.title}</td>
-									<td>${question.optionA}</td>
-									<td>${question.optionB}</td>
-									<td>${question.optionC}</td>
-									<td>${question.optionD}</td>
+									<td><div name="show_list">${question.id}</div></td>
+                                    <td><div name="show_list">${question.title}</div></td>
+                                    <td><img src="${question.img}" alt="" style="width: 140px;height: 140px"></td>
+                                    <td><div name="show_list">${question.optionA}</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointA}</div></td>
+                                    <td><div name="show_list">${question.optionB}</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointB}</div></td>
+                                    <td><div name="show_list">${question.optionC}</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointC}</div></td>
+                                    <td><div name="show_list">${question.optionD}</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointD}</div></td>
+                                    <td><div name="show_list">${question.optionE}</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointE}</div></td>
+                                    <td><div name="show_list">${question.optionF}</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointF}</div></td>
+                                    <td><div name="show_list">${question.optionG}</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointG}</div></td>
+                                    <td><div name="show_list">${question.optionH}</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointH}</div></td>
 									<td>
 										<button name="show-edit-btn" class="btn btn-default btn-xs">编辑</button>
-										<button name="show-rate-btn" class="btn btn-info btn-xs">平均分</button>
+										<button name="show-rate-btn" class="btn btn-info btn-xs" style="display: none">平均分</button>
 										<button name="delete-btn" class="btn btn-danger btn-xs">删除</button>
 									</td>
 								</tr>
@@ -139,20 +149,28 @@
 	</div>
 
 	<!-- 题目编辑 -->
-	<div class="modal_window teacher_clazz_window form-control" id="question-edit">
+	<div class="modal_window teacher_clazz_window form-control" id="question-edit"  style=" overflow:scroll; width:650px; height:400px;">
 		<div class="modal_window_title">
 			题目编辑: <img src="images/error.png" id="close-edit-btn">
 		</div>
 		<div>
-			<table style="margin: 0px auto 0px;width: 350px;">
+			<table style="margin: 0px auto 0px;width: 600px;">
 				<tr>
 					<td width="15%">题目:</td>
-					<td width="60%">
+					<td width="30%">
 						<input type="text" name="title" class="required" />
 					</td>
-					<td width="25%">
-						<span class="error"></span>
+                    <td width="20%">
+                        <span class="error"></span>
+                    </td>
+					<td width="20%" style="font-size: 11px">&nbsp;上传图片：&nbsp;</td>
+					<td width="15%">
+						<input type="hidden" name='edit_single_picPath' />
+						<input type="file" name="edit_pic" onchange="imgPreview(this)"/>
+						<img  name="pic_path" src="" alt="" style=" height: 70px; width: 70px">
 					</td>
+
+
 				</tr>
 				<c:if test="${type != 'JUDGE'}">
 					<tr>
@@ -160,70 +178,130 @@
 						<td>
 							<input type="text" name="optionA" class="required" />
 						</td>
-						<td>
-							<span class="error"></span>
-						</td>
+                        <td>
+                            <span class="error"></span>
+                        </td>
+						<td>&nbsp; &nbsp;分值： &nbsp;</td>
+						<td><input type="text" name="single_optionA_points" class=""></td>
+
 					</tr>
 					<tr>
 						<td>选项B:</td>
 						<td>
 							<input type="text" name="optionB" class="required" />
 						</td>
-						<td>
-							<span class="error"></span>
-						</td>
+                        <td>
+                            <span class="error"></span>
+                        </td>
+						<td>&nbsp; &nbsp;分值： &nbsp;</td>
+						<td><input type="text" name="single_optionB_points" class=""></td>
+
 					</tr>
 					<tr>
 						<td>选项C:</td>
 						<td>
 							<input type="text" name="optionC" class="required" />
 						</td>
-						<td>
-							<span class="error"></span>
-						</td>
+                        <td>
+                            <span class="error"></span>
+                        </td>
+						<td>&nbsp; &nbsp;分值： &nbsp;</td>
+						<td><input type="text" name="single_optionC_points" class=""></td>
+
 					</tr>
 					<tr>
 						<td>选项D:</td>
 						<td>
 							<input type="text" name="optionD" class="required" />
 						</td>
+                        <td>
+                            <span class="error"></span>
+                        </td>
+						<td>&nbsp; &nbsp;分值： &nbsp;</td>
+						<td><input type="text" name="single_optionD_points" class=""></td>
+
+					</tr>
+					<tr>
+						<td>选项E:</td>
 						<td>
-							<span class="error"></span>
+							<input type="text" name="optionE" class="" />
 						</td>
+                        <td>
+                            <span class="error"></span>
+                        </td>
+						<td>&nbsp; &nbsp;分值： &nbsp;</td>
+						<td><input type="text" name="single_optionE_points" class=""></td>
+
+					</tr>
+					<tr>
+						<td>选项F:</td>
+						<td>
+							<input type="text" name="optionF" class="" />
+						</td>
+                        <td>
+                            <span class="error"></span>
+                        </td>
+						<td>&nbsp; &nbsp;分值： &nbsp;</td>
+						<td><input type="text" name="single_optionF_points" class=""></td>
+
+					</tr>
+					<tr>
+						<td>选项G:</td>
+						<td>
+							<input type="text" name="optionG" class="" />
+						</td>
+                        <td>
+                            <span class="error"></span>
+                        </td>
+						<td>&nbsp; &nbsp;分值： &nbsp;</td>
+						<td><input type="text" name="single_optionG_points" class=""></td>
+
+					</tr>
+					<tr>
+						<td>选项H:</td>
+						<td>
+							<input type="text" name="optionH" class="" />
+						</td>
+                        <td>
+                            <span class="error"></span>
+                        </td>
+						<td>&nbsp; &nbsp;分值： &nbsp;</td>
+						<td><input type="text" name="single_optionH_points" class=""></td>
+
 					</tr>
 				</c:if>
-				<tr>
-					<td>答案:</td>
-					<td id="question-answer-container">
-						<c:choose>
-							<c:when test="${type == 'SINGLE'}">
-								<input type="radio" name="answer" value="0" />A
-								<input type="radio" name="answer" value="1" />B
-								<input type="radio" name="answer" value="2" />C
-								<input type="radio" name="answer" value="3" />D
-							</c:when>
-							<c:when test="${type == 'MULTI'}">
-								<input type="checkbox" value="0" />A
-								<input type="checkbox" value="1" />B
-								<input type="checkbox" value="2" />C
-								<input type="checkbox" value="3" />D
-							</c:when>
-							<c:otherwise>
-								<input type="radio" name="anser" value="0" />对
-								<input type="radio" name="answer" value="1" />错
-							</c:otherwise>
-						</c:choose>
-					</td>
-				</tr>
-				<tr>
-					<td>分值:</td>
-					<td>
-						<input type="text" name="point" class="number" />
-					</td>
-					<td>
-						<span class="error"></span>
-					</td>
-				</tr>
+				<%--<tr>--%>
+					<%--<td>答案:</td>--%>
+					<%--<td id="question-answer-container">--%>
+						<%--<c:choose>--%>
+							<%--<c:when test="${type == 'SINGLE'}">--%>
+								<%--<input type="radio" name="answer" value="0" />A--%>
+								<%--<input type="radio" name="answer" value="1" />B--%>
+								<%--<input type="radio" name="answer" value="2" />C--%>
+								<%--<input type="radio" name="answer" value="3" />D--%>
+							<%--</c:when>--%>
+							<%--<c:when test="${type == 'MULTI'}">--%>
+								<%--<input type="checkbox" value="0" />A--%>
+								<%--<input type="checkbox" value="1" />B--%>
+								<%--<input type="checkbox" value="2" />C--%>
+								<%--<input type="checkbox" value="3" />D--%>
+							<%--</c:when>--%>
+							<%--<c:otherwise>--%>
+								<%--<input type="radio" name="anser" value="0" />对--%>
+								<%--<input type="radio" name="answer" value="1" />错--%>
+							<%--</c:otherwise>--%>
+						<%--</c:choose>--%>
+					<%--</td>--%>
+				<%--</tr>--%>
+				<%--<tr>--%>
+					<%--<td>分值:</td>--%>
+					<%--<td>--%>
+						<%--<input type="text" name="point" class="number" />--%>
+					<%--</td>--%>
+					<%--<td>--%>
+						<%--<span class="error"></span>--%>
+					<%--</td>--%>
+				<%--</tr>--%>
 			</table>
 		</div>
 		<div class="error" style="text-align: center;" id="question-error">&nbsp;</div>
@@ -245,4 +323,48 @@
 <script src="script/time.js"></script>
 <script src="script/tips.js"></script>
 <script src="script/teacher/question.js"></script>
+<script>
+    function imgPreview(fileDom) {
+        if (window.FileReader) {
+            var reader = new FileReader();
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+        //获取文件
+        var file = fileDom.files[0];
+        var imageType = /^image\//;
+        //是否是图片
+        if (!imageType.test(file.type)) {
+            alert("请选择图片！");
+            return;
+        }
+        var uploadFile = new FormData();
+        uploadFile.append('file', file);
+        //读取完成
+        reader.onload = function (e) {
+            $.ajax({
+                type: "post",
+                url: "teacher/uploadImage",
+                data: uploadFile,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    //data = JSON.parse(data);
+                    if (data.result == "1") {
+                        // filePath = data.filePath;
+                        fileDom.previousElementSibling.setAttribute('value',data.filePath);
+                        fileDom.nextElementSibling.setAttribute('src', e.target.result);
+                        Tips.showSuccess("上传成功！");
+                    } else {
+                        Tips.showMessage("上传失败！");
+                    }
+                },
+                error: function () {
+                    Tips.showError('操作失败！');
+                }
+            });
+        };
+        reader.readAsDataURL(file);
+    }
+</script>
 </html>

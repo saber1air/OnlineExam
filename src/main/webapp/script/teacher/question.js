@@ -5,6 +5,7 @@ $(function() {
 	QuestionHelper.isSingle = (QuestionHelper.questionType === "SINGLE");
 	QuestionHelper.isMulti = (QuestionHelper.questionType === "MULTI");
 	QuestionHelper.isJudge = (QuestionHelper.questionType === "JUDGE");
+
 });
 
 var QuestionHelper = {
@@ -36,18 +37,33 @@ var QuestionHelper = {
 		create: function($tr) {
 			var question = {};
 			var $tds = $tr.children("td");
-			question.id = $tds[0].innerHTML;
-			question.title = $tds[1].innerHTML;
+			var $inputs = $tr.find("div[name='show_list']");
+			question.id = $inputs[0].innerHTML;
+			question.title = $inputs[1].innerHTML;
 			if (QuestionHelper.isJudge) {
-				question.answer = this.judgeMapper[$tds[2].innerHTML];
-				question.point = $tds[3].innerHTML;
+				question.answer = this.judgeMapper[$inputs[2].innerHTML];
+				question.point = $inputs[3].innerHTML;
 			} else {
-				question.optionA = $tds[2].innerHTML;
-				question.optionB = $tds[3].innerHTML;
-				question.optionC = $tds[4].innerHTML;
-				question.optionD = $tds[5].innerHTML;
+			    question.img = $tr.find("img")[0].src;
+				question.optionA = $inputs[2].innerHTML;
+                question.pointA = $inputs[3].innerHTML;
+				question.optionB = $inputs[4].innerHTML;
+                question.pointB = $inputs[5].innerHTML;
+				question.optionC = $inputs[6].innerHTML;
+                question.pointC = $inputs[7].innerHTML;
+				question.optionD = $inputs[8].innerHTML;
+                question.pointD = $inputs[9].innerHTML;
+                question.optionE = $inputs[10].innerHTML;
+                question.pointE = $inputs[11].innerHTML;
+                question.optionF = $inputs[12].innerHTML;
+                question.pointF = $inputs[13].innerHTML;
+                question.optionG = $inputs[14].innerHTML;
+                question.pointG = $inputs[15].innerHTML;
+                question.optionH = $inputs[16].innerHTML;
+                question.pointH = $inputs[17].innerHTML;
 				if (QuestionHelper.isSingle) {
-					question.answer = this.answerMapper[$tds[6].innerHTML];
+					// question.answer = this.answerMapper[$tds[6].innerHTML];
+                    question.answer = '';
 				} else {
 					//B,C
 					var str = $tds[6].innerHTML;
@@ -57,8 +73,10 @@ var QuestionHelper = {
 					}
 					question.answer = arr.join(",");
 				}
-				question.point = $tds[7].innerHTML;
+				// question.point = $tds[7].innerHTML;
+                question.point = '';
 			}
+			console.log(question);
 			return question;
 		}
 	},
@@ -171,19 +189,32 @@ var QuestionHelper = {
 		var $tr = $(button).parents("tr");
 		//设置面板里面各个input的值
 		var question = QuestionHelper.current = this.Question.create($tr);
+		console.log(question);
 		var $inputs = $questionEdit.find("input[type=text]");
 		$inputs[0].value = question.title;
 		if (QuestionHelper.isJudge) {
 			$inputs[1].value = question.point;
 			$questionEdit.find("input[type=radio]")[question.answer].checked = "checked";
 		} else {
+            $questionEdit.find("img[name='pic_path']")[0].src = question.img;
 			$inputs[1].value = question.optionA;
-			$inputs[2].value = question.optionB;
-			$inputs[3].value = question.optionC;
-			$inputs[4].value = question.optionD;
-			$inputs[5].value = question.point;
+            $inputs[2].value = question.pointA;
+			$inputs[3].value = question.optionB;
+            $inputs[4].value = question.pointB;
+			$inputs[5].value = question.optionC;
+            $inputs[6].value = question.pointC;
+			$inputs[7].value = question.optionD;
+			$inputs[8].value = question.pointD;
+            $inputs[9].value = question.optionE;
+            $inputs[10].value = question.pointE;
+            $inputs[11].value = question.optionF;
+            $inputs[12].value = question.pointF;
+            $inputs[13].value = question.optionG;
+            $inputs[14].value = question.pointG;
+            $inputs[15].value = question.optionH;
+            $inputs[16].value = question.pointH;
 			if (QuestionHelper.isSingle) {
-				$questionEdit.find("input[type=radio]")[question.answer].checked = "checked";
+				// $questionEdit.find("input[type=radio]")[question.answer].checked = "checked";
 			} else {
 				var $boxes = $questionEdit.find("input[type=checkbox]");
 				var as = question.answer.split(",");
@@ -215,25 +246,28 @@ var QuestionHelper = {
 	},
 	saveQuestion: function() {
 		//支持单选和多选
-		var answer, i, l,
-			$checkeds = $("#question-answer-container input:checked");
-		if (QuestionHelper.questionType === "MULTI") {
-			if ($checkeds.length < 2) {
-				$("#question-error").html("请选择至少两个答案");
-				return;
-			}
-			//拼接答案串
-			var array = [];
-			for (i = 0, l = $checkeds.length;i < l;i ++) {
-				array.push($checkeds[i].value);
-			}
-			answer = array.join(",");
-		} else {
-			answer = $checkeds[0].value;
-		}
+		// var answer, i, l,
+		// 	$checkeds = $("#question-answer-container input:checked");
+		// if (QuestionHelper.questionType === "MULTI") {
+		// 	if ($checkeds.length < 2) {
+		// 		$("#question-error").html("请选择至少两个答案");
+		// 		return;
+		// 	}
+		// 	//拼接答案串
+		// 	var array = [];
+		// 	for (i = 0, l = $checkeds.length;i < l;i ++) {
+		// 		array.push($checkeds[i].value);
+		// 	}
+		// 	answer = array.join(",");
+		// } else {
+		// 	answer = $checkeds[0].value;
+		// }
 		//如果有内容做出了修改，执行下面的步骤才是有意义的
-		if (!QuestionHelper.isEdit || QuestionHelper.modified || answer !== QuestionHelper.current.answer) {
-			//触发所有校验
+		// if (!QuestionHelper.isEdit || QuestionHelper.modified || answer !== QuestionHelper.current.answer) {
+        console.log('00000');
+        if (true || !QuestionHelper.isEdit || QuestionHelper.modified ) {
+            console.log('11111');
+        //触发所有校验
 			var requires = QuestionHelper.Validator.cache.requires,
 				requireValidator = QuestionHelper.Validator.notNullValidator;
 			//values用来记录各个input个值，避免再次从dom获取
@@ -243,18 +277,25 @@ var QuestionHelper = {
 			for (var i = 0, l = requires.length;i < l;i ++) {
 				e = requires[i];
 				if (!(value = requireValidator.call(QuestionHelper.Validator, e.input, e.error))) {
+                    console.log('22222');
 					return;
 				}
-				values.push(value);
+				// values.push(value);
 			}
 			var numbers = QuestionHelper.Validator.cache.numbers,
 				numberValidator = QuestionHelper.Validator.numberValidator;
 			for (i = 0, l = numbers.length;i < l;i ++) {
 				e = numbers[i];
 				if (!(value = numberValidator.call(QuestionHelper.Validator, e.input, e.error))) {
+                    console.log('3333');
 					return;
 				}
-				values.push(value);
+				// values.push(value);
+			}
+            var $questionEdit = $("#question-edit");
+            var $inputs = $questionEdit.find("input[type=text]");
+            for(var j=0;j<$inputs.length;j++){
+            	values.push($inputs[j].value);
 			}
 			var data;
 			if (QuestionHelper.isJudge) {
@@ -263,14 +304,18 @@ var QuestionHelper = {
 			} else {
 				//参数串
 				data = "id=" + (QuestionHelper.current ? QuestionHelper.current.id : "-1") + "&title=" + values[0] + "&optionA=" + values[1] +
-					"&optionB=" + values[2] + "&optionC=" + values[3] + "&optionD=" + values[4] + "&point=" + values[5]
-					+ "&answer=" + answer + "&type=" + QuestionHelper.questionType;
+                    "&pointA=" + values[2] + "&optionB=" + values[3] + "&pointB=" + values[4] + "&optionC=" + values[5]
+                    +"&pointC=" + values[6] + "&optionD=" + values[7] + "&pointD=" + values[8] + "&optionE=" + values[9]
+                    +"&pointE=" + values[10] + "&optionF=" + values[11] + "&pointF=" + values[12] + "&optionG=" + values[13]
+                    +"&pointG=" + values[14] + "&optionH=" + values[15] + "&pointH=" + values[16] + "&point=1"
+					+ "&answer=1"  + "&type=" + QuestionHelper.questionType + "&img="+$questionEdit.find("input[type=hidden]").val();
 			}
 			//提交
 			$.post("teacher/question/save", data, function(data) {
-				if (data.result === "0") {
+                console.log(data);
+				if (data.result == "0") {
 					Tips.showError("保存失败，请稍候再试");
-				} else if (data.result === "1") {
+				} else if (data.result == "1") {
 					Tips.showSuccess("保存成功");
 					setTimeout(function() {
 						window.location.reload();
