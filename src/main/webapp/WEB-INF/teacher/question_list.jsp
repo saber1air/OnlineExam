@@ -20,6 +20,11 @@
 <link rel="stylesheet" type="text/css" href="css/head.css">
 <link rel="stylesheet" type="text/css" href="css/list_main.css">
 <link rel="stylesheet" type="text/css" href="css/modal.css">
+	<style>
+		div[name='show_list']{
+			display: inline;
+		}
+	</style>
 <script type="text/javascript">
 	//搜索
 	function searchQuestion(form) {
@@ -111,14 +116,14 @@
 									<td><div name="show_list">${question.id}</div></td>
                                     <td><div name="show_list">${question.title}</div></td>
                                     <td><img src="${question.img}" alt="" style="width: 140px;height: 140px"></td>
-                                    <td><div name="show_list">${question.optionA}(${question.pointA})</div>&nbsp;&nbsp;</td>
-                                    <td><div name="show_list">${question.optionB}(${question.pointB})</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointB}</div></td>
-                                    <td><div name="show_list">${question.optionC}(${question.pointC})</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointC}</div></td>
-                                    <td><div name="show_list">${question.optionD}(${question.pointD})</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointD}</div></td>
-                                    <td><div name="show_list">${question.optionE}(${question.pointE})</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointE}</div></td>
-                                    <td><div name="show_list">${question.optionF}(${question.pointF})</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointF}</div></td>
-                                    <td><div name="show_list">${question.optionG}(${question.pointG})</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointG}</div></td>
-                                    <td><div name="show_list">${question.optionH}(${question.pointH})</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointH}</div></td>
+                                    <td><div name="show_list">${question.optionA}</div>(<div name="show_list" ><c:if test="${question.optionA != ''}">${question.pointA}</c:if></div>)</td>
+                                    <td><div name="show_list">${question.optionB}</div>(<div name="show_list" ><c:if test="${question.optionB != ''}">${question.pointB}</c:if></div>)</td>
+                                    <td><div name="show_list">${question.optionC}</div>(<div name="show_list" ><c:if test="${question.optionC != ''}">${question.pointC}</c:if></div>)</td>
+                                    <td><div name="show_list">${question.optionD}</div>(<div name="show_list" ><c:if test="${question.optionD != ''}">${question.pointD}</c:if></div>)</td>
+                                    <td><div name="show_list">${question.optionE}</div>(<div name="show_list" ><c:if test="${question.optionE != ''}">${question.pointE}</c:if></div>)</td>
+                                    <td><div name="show_list">${question.optionF}</div>(<div name="show_list" ><c:if test="${question.optionF != ''}">${question.pointF}</c:if></div>)</td>
+                                    <td><div name="show_list">${question.optionG}</div>(<div name="show_list" ><c:if test="${question.optionG != ''}">${question.pointG}</c:if></div>)</td>
+                                    <td><div name="show_list">${question.optionH}</div>(<div name="show_list" ><c:if test="${question.optionH != ''}">${question.pointH}</c:if></div>)</td>
 									<td>
 										<button name="show-edit-btn" class="btn btn-default btn-xs">编辑</button>
 										<button name="show-rate-btn" class="btn btn-info btn-xs" style="display: none">平均分</button>
