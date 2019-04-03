@@ -94,14 +94,14 @@
 								<th width="5%">id</th>
                                 <th width="10%">标题</th>
 								<th width="15%"></th>
-								<th width="7%">选项A</th>
-								<th width="7%">选项B</th>
-								<th width="7%">选项C</th>
-								<th width="7%">选项D</th>
-								<th width="7%">选项E</th>
-								<th width="7%">选项F</th>
-								<th width="7%">选项G</th>
-								<th width="7%">选项H</th>
+								<th width="7%">选项A(分值)</th>
+								<th width="7%">选项B(分值)</th>
+								<th width="7%">选项C(分值)</th>
+								<th width="7%">选项D(分值)</th>
+								<th width="7%">选项E(分值)</th>
+								<th width="7%">选项F(分值)</th>
+								<th width="7%">选项G(分值)</th>
+								<th width="7%">选项H(分值)</th>
 								<th width="14%">操作</th>
 							</tr>
 						</thead>
@@ -111,14 +111,14 @@
 									<td><div name="show_list">${question.id}</div></td>
                                     <td><div name="show_list">${question.title}</div></td>
                                     <td><img src="${question.img}" alt="" style="width: 140px;height: 140px"></td>
-                                    <td><div name="show_list">${question.optionA}</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointA}</div></td>
-                                    <td><div name="show_list">${question.optionB}</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointB}</div></td>
-                                    <td><div name="show_list">${question.optionC}</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointC}</div></td>
-                                    <td><div name="show_list">${question.optionD}</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointD}</div></td>
-                                    <td><div name="show_list">${question.optionE}</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointE}</div></td>
-                                    <td><div name="show_list">${question.optionF}</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointF}</div></td>
-                                    <td><div name="show_list">${question.optionG}</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointG}</div></td>
-                                    <td><div name="show_list">${question.optionH}</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointH}</div></td>
+                                    <td><div name="show_list">${question.optionA}(${question.pointA})</div>&nbsp;&nbsp;</td>
+                                    <td><div name="show_list">${question.optionB}(${question.pointB})</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointB}</div></td>
+                                    <td><div name="show_list">${question.optionC}(${question.pointC})</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointC}</div></td>
+                                    <td><div name="show_list">${question.optionD}(${question.pointD})</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointD}</div></td>
+                                    <td><div name="show_list">${question.optionE}(${question.pointE})</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointE}</div></td>
+                                    <td><div name="show_list">${question.optionF}(${question.pointF})</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointF}</div></td>
+                                    <td><div name="show_list">${question.optionG}(${question.pointG})</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointG}</div></td>
+                                    <td><div name="show_list">${question.optionH}(${question.pointH})</div>&nbsp;&nbsp;<div name="show_list" style="display: none">${question.pointH}</div></td>
 									<td>
 										<button name="show-edit-btn" class="btn btn-default btn-xs">编辑</button>
 										<button name="show-rate-btn" class="btn btn-info btn-xs" style="display: none">平均分</button>

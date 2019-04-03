@@ -34,6 +34,7 @@
 					<th>测试名称</th>
 					<th>测试分数</th>
 					<th>测试时间</th>
+					<th>测试报告</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -46,6 +47,9 @@
 						<td>${note.point}</td>
 						<td>
 							<fmt:formatDate value="${note.time}" pattern="yyyy-MM-dd"/>
+						</td>
+						<td>
+							<a href="login">报告</a>
 						</td>
 					</tr>
 				</c:forEach>

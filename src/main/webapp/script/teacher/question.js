@@ -325,7 +325,7 @@ var QuestionHelper = {
 		}
 	},
 	deleteQuestion: function(button) {
-		var id = $(button).parents("tr").find("td:first").html();
+		var id = $(button).parents("tr").find("div:first").html();
 		if (confirm("您确认删除此题?")) {
 			$.ajax({
 				url: "teacher/question/delete/" + id,
