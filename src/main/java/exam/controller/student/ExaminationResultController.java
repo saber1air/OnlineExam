@@ -62,5 +62,21 @@ public class ExaminationResultController {
 		model.addAttribute("view", view);
 		return "student/examinationResult_view";
 	}
+
+	/**
+	 * 查看报告
+	 * @param
+	 * @param
+	 * @return
+	 */
+	@RequestMapping("/report/{point}")
+	public String report(@PathVariable Integer point, Model model) {
+		if (!DataUtil.isValid(point)) {
+			return "error";
+		}
+
+		model.addAttribute("point", point);
+		return "student/result";
+	}
 	
 }

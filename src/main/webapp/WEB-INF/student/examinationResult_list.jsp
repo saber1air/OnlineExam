@@ -49,7 +49,7 @@
 							<fmt:formatDate value="${note.time}" pattern="yyyy-MM-dd"/>
 						</td>
 						<td>
-							<a href="login">报告</a>
+							<a href="student/notes/report/${note.point}">报告</a>
 						</td>
 					</tr>
 				</c:forEach>

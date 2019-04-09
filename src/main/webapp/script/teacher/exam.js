@@ -572,7 +572,7 @@ function addSingleQuestion(handler) {
  * @param event
  */
 function addSingleQuestionOption(event) {
-	if('none' ==$("div[name='extra_answers']").css('display')){
+	if('none' ==$("tr[name='extra_answers']").css('display')){
         $("tr[name='extra_option']").css('display','');
         // $("div[name='extra_answers']").css('display','');
 	}else{

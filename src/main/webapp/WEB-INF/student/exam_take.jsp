@@ -18,6 +18,11 @@
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/head.css">
 <link rel="stylesheet" type="text/css" href="css/student/exam_take.css">
+	<style>
+		.question{
+			display: none;
+		}
+	</style>
 </head>
 <body>
 	<!--头部-->
@@ -89,55 +94,57 @@
 					</div>
 				</div>
 			</c:forEach>
+
+			<button id="single_next">下一题</button>
 		</div>
-		<hr>
-		<!-- 多选题 -->
-		<div id="multi-container">
-			<div class="title">
-				二、多选题
-			</div>
-			<c:forEach items="${exam.multiQuestions}" var="question" varStatus="status"> 
-				<div class="question">
-					<input type="hidden" name="question-id" value="${question.id}" />
-					<div class="question-title">
-						${status.index + 1}.&nbsp;&nbsp;${question.title}
-					</div>
-					<ul class="question-option">
-						<li>A.&nbsp;&nbsp;${question.optionA}</li>
-						<li>B.&nbsp;&nbsp;${question.optionB}</li>
-						<li>C.&nbsp;&nbsp;${question.optionC}</li>
-						<li>D.&nbsp;&nbsp;${question.optionD}</li>
-					</ul>
-					<div class="question-answer">
-						答案:
-						<input type="checkbox" value="0" />A
-						<input type="checkbox" value="1" />B
-						<input type="checkbox" value="2" />C
-						<input type="checkbox" value="3" />D
-					</div>
-				</div>
-			</c:forEach>
-		</div>
-		<hr>
-		<!-- 判断题 -->
-		<div id="judge-container">
-			<div class="title">
-				三、判断题
-			</div>
-			<c:forEach items="${exam.judgeQuestions}" var="question" varStatus="status">
-				<div class="question">
-					<input type="hidden" name="question-id" value="${question.id}" />
-					<div class="question-title">
-						${status.index + 1}.&nbsp;&nbsp;${question.title}
-					</div>
-					<div class="question-answer">
-						答案:
-						<input type="radio" name="judge-${status.index}" value="0" />对
-						<input type="radio" name="judge-${status.index}" value="1" />错
-					</div>
-				</div>
-			</c:forEach>
-		</div>
+		<%--<hr>--%>
+		<%--<!-- 多选题 -->--%>
+		<%--<div id="multi-container">--%>
+			<%--<div class="title">--%>
+				<%--二、多选题--%>
+			<%--</div>--%>
+			<%--<c:forEach items="${exam.multiQuestions}" var="question" varStatus="status"> --%>
+				<%--<div class="question">--%>
+					<%--<input type="hidden" name="question-id" value="${question.id}" />--%>
+					<%--<div class="question-title">--%>
+						<%--${status.index + 1}.&nbsp;&nbsp;${question.title}--%>
+					<%--</div>--%>
+					<%--<ul class="question-option">--%>
+						<%--<li>A.&nbsp;&nbsp;${question.optionA}</li>--%>
+						<%--<li>B.&nbsp;&nbsp;${question.optionB}</li>--%>
+						<%--<li>C.&nbsp;&nbsp;${question.optionC}</li>--%>
+						<%--<li>D.&nbsp;&nbsp;${question.optionD}</li>--%>
+					<%--</ul>--%>
+					<%--<div class="question-answer">--%>
+						<%--答案:--%>
+						<%--<input type="checkbox" value="0" />A--%>
+						<%--<input type="checkbox" value="1" />B--%>
+						<%--<input type="checkbox" value="2" />C--%>
+						<%--<input type="checkbox" value="3" />D--%>
+					<%--</div>--%>
+				<%--</div>--%>
+			<%--</c:forEach>--%>
+		<%--</div>--%>
+		<%--<hr>--%>
+		<%--<!-- 判断题 -->--%>
+		<%--<div id="judge-container">--%>
+			<%--<div class="title">--%>
+				<%--三、判断题--%>
+			<%--</div>--%>
+			<%--<c:forEach items="${exam.judgeQuestions}" var="question" varStatus="status">--%>
+				<%--<div class="question">--%>
+					<%--<input type="hidden" name="question-id" value="${question.id}" />--%>
+					<%--<div class="question-title">--%>
+						<%--${status.index + 1}.&nbsp;&nbsp;${question.title}--%>
+					<%--</div>--%>
+					<%--<div class="question-answer">--%>
+						<%--答案:--%>
+						<%--<input type="radio" name="judge-${status.index}" value="0" />对--%>
+						<%--<input type="radio" name="judge-${status.index}" value="1" />错--%>
+					<%--</div>--%>
+				<%--</div>--%>
+			<%--</c:forEach>--%>
+		<%--</div>--%>
 		<hr />
 		<div style="text-align: center;margin-bottom: 20px;">
 			<button id="submit-btn">提交</button>
@@ -149,4 +156,24 @@
 <script src="script/time.js"></script>
 <script src="script/tips.js"></script>
 <script src="script/student/exam_take.js"></script>
+<script>
+    var question_list = $("#single-container").find("div.question");
+    $.each(question_list, function(index, question) {
+        if( 0 == index){
+             $(question).css('display','block');
+            return false;
+		}
+        return;
+    });
+	$("#single_next").click(function () {
+        $.each(question_list, function(index, question) {
+            var question = $(question);
+            if("block" == question.css('display') && index < (question_list.length-1)){
+                question.css('display','none');
+                question.next('div.question').css('display','block');
+                return false;
+			};
+        });
+    })
+</script>
 </html>
